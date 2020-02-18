@@ -9,8 +9,7 @@ startGame();
 $(document).ready(() => {
 
     $('.poke-card').click(function() {
-        console.log($(this)[0].getElementsByClassName('poke-card-content')[0].classList.add('active'));
-
+        $(this)[0].getElementsByClassName('poke-card-content')[0].classList.add('active');
     });
 
 });
