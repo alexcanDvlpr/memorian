@@ -15,8 +15,6 @@ $(document).ready(() => {
 });
 
 
-
-
 function startGame() {
     consumeApi('https://pokeapi.co/api/v2/pokemon?limit=151');
     prepareGame();
@@ -30,6 +28,7 @@ function prepareGame() {
         addTwoEqualsElement(pokeArray[random]);
     }
     let aux = [];
+    $('#loading').hide();
     while (aux.length < pokeArrayToShow.length) {
         // Imprimir las tarjetas de forma aleatoria para el juego
         let cardRandom = Math.floor(Math.random() * pokeArrayToShow.length);
@@ -70,17 +69,26 @@ function consumePokemon(url) {
 function createHtmlElement(pokemon) {
     return `<div class="poke-card">
     <a href="#">
-        <div class="poke-card-content ` + pokemon.name + `">
+        <div class="poke-card-content active ` + pokemon.name + `">
             <div class="front">
                 <img src="./assets/img/bg-pokeball.png" alt="bg">
                 <div class="back">
                     <img src="` + pokemon.sprites.front_default + `" alt="` + pokemon.name + `">
                     <div class="text-content text-center">
-                        <p>` + pokemon.name + `</p>
+                        <p>` + titleCase(pokemon.name) + `</p>
                     </div>
                 </div>
             </div>
         </div>
     </a>
 </div>`;
+}
+
+function titleCase(string) {
+    var sentence = string.toLowerCase().split(" ");
+    for (var i = 0; i < sentence.length; i++) {
+        sentence[i] = sentence[i][0].toUpperCase() + sentence[i].slice(1);
+    }
+    document.write(sentence.join(" "));
+    return sentence;
 }

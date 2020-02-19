@@ -48,3 +48,8 @@
 .poke-card .back .text-content {
     width: 100%;
 }
+
+.poke-card .back .text-content p {
+    font-size: 10px;
+    color: var(--yellow-pokemon);
+}
