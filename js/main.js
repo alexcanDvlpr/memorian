@@ -1,31 +1,26 @@
 var pokeArray = [];
 var pokeArrayToShow = [];
 
-startGame();
+prepare();
 
 
-
-
-$(document).ready(() => {
-
-    $('.poke-card').click(function() {
-        $(this)[0].getElementsByClassName('poke-card-content')[0].classList.add('active');
-    });
-
-});
-
-
-function startGame() {
+function prepare() {
     consumeApi('https://pokeapi.co/api/v2/pokemon?limit=151');
-    prepareGame();
+    prepareBoard();
 }
 
 
-function prepareGame() {
+function prepareBoard() {
     // Coger 4 pokemons aleatorios y duplicarlos para el memorian
+    let numRandomArr = [];
     for (let i = 0; i < 4; i++) {
         let random = Math.floor(Math.random() * pokeArray.length);
-        addTwoEqualsElement(pokeArray[random]);
+        if (!numRandomArr.includes(random)) {
+            numRandomArr.push(random);
+            addTwoEqualsElement(pokeArray[random]);
+        } else {
+            i--;
+        }
     }
     let aux = [];
     $('#loading').hide();
@@ -68,8 +63,7 @@ function consumePokemon(url) {
 
 function createHtmlElement(pokemon) {
     return `<div class="poke-card">
-    <a href="#">
-        <div class="poke-card-content active ` + pokemon.name + `">
+        <div class="poke-card-content ` + pokemon.name + `">
             <div class="front">
                 <img src="./assets/img/bg-pokeball.png" alt="bg">
                 <div class="back">
@@ -80,7 +74,6 @@ function createHtmlElement(pokemon) {
                 </div>
             </div>
         </div>
-    </a>
 </div>`;
 }
 
@@ -89,6 +82,5 @@ function titleCase(string) {
     for (var i = 0; i < sentence.length; i++) {
         sentence[i] = sentence[i][0].toUpperCase() + sentence[i].slice(1);
     }
-    document.write(sentence.join(" "));
     return sentence;
 }

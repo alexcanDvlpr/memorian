@@ -1,5 +1,6 @@
 .poke-card {
     margin: 15px;
+    cursor: pointer;
 }
 
 .poke-card-content {
@@ -52,4 +53,10 @@
 .poke-card .back .text-content p {
     font-size: 10px;
     color: var(--yellow-pokemon);
+}
+
+.poke-card.disabled {
+    opacity: .6;
+    pointer-events: none;
+    cursor: not-allowed;
 }
