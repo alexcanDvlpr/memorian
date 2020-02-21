@@ -13,20 +13,22 @@ $(document).ready(() => {
         let pokeElement = $(this)[0].getElementsByClassName('poke-card-content')[0];
         pokeArr.push(pokeElement);
         pokeElement.classList.add('active');
-        
+
         let pokeClassName = pokeElement.className.split(' ')[1];
         if (poke1) {
-            // allElements.addClass('disabled');
             poke2 = pokeClassName;
 
             if (poke1 === poke2) {
                 points++;
                 showPoints(points);
+                pokeArr.forEach(poke => {
+                    poke.parentElement.classList.add('disabled-win');
+                    pokeArr = [];
+                });
                 if (points === totalPointToWin) {
                     console.log('HAS GANADO!!');
                 }
                 pokeArr = [];
-                // allElements.removeClass('disabled');
             } else {
                 setTimeout(() => {
                     pokeArr.forEach(poke => {
@@ -34,7 +36,6 @@ $(document).ready(() => {
                         pokeArr = [];
                     });
                 }, 1200);
-                // allElements.removeClass('disabled');
             }
             poke1 = '';
             poke2 = '';

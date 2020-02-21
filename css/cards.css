@@ -55,7 +55,8 @@
     color: var(--yellow-pokemon);
 }
 
-.poke-card.disabled {
+.poke-card.disabled,
+.poke-card.disabled-win {
     opacity: .6;
     pointer-events: none;
     cursor: not-allowed;
